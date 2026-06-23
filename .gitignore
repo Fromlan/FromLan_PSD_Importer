@@ -12,3 +12,9 @@ psd-tools/
 游戏界面.psd.import
 黑色2.psd
 黑色2.psd.import
+
+# Project config & assets (local only)
+reasonix.toml
+project.godot
+icon.svg
+icon.svg.import
