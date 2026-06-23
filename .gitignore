@@ -1,0 +1,14 @@
+# Godot 4+ specific ignores
+.godot/
+/android/
+
+# Local tool caches
+.reasonix/
+.codegraph/
+psd-tools/
+
+# PSD source files
+游戏界面.psd
+游戏界面.psd.import
+黑色2.psd
+黑色2.psd.import

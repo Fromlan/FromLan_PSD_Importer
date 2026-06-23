@@ -1,0 +1,71 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://addons/FromLan_PSD_Importer/psd_importer_dock.gd" id="1_psd_importer_dock"]
+
+[node name="root" type="VBoxContainer"]
+auto_translate = false
+script = ExtResource("1_psd_importer_dock")
+
+[node name="Toolbar" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="RefreshBtn" type="Button" parent="Toolbar"]
+layout_mode = 2
+text = "Refresh"
+
+[node name="SelectAllBtn" type="Button" parent="Toolbar"]
+layout_mode = 2
+text = "Select All"
+
+[node name="DeselectAllBtn" type="Button" parent="Toolbar"]
+layout_mode = 2
+text = "Deselect All"
+
+[node name="ImportBtn" type="Button" parent="Toolbar"]
+layout_mode = 2
+text = "Import Selected"
+
+[node name="HSeparator1" type="HSeparator" parent="."]
+layout_mode = 2
+
+[node name="FileScroll" type="ScrollContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="FileList" type="VBoxContainer" parent="FileScroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HSeparator2" type="HSeparator" parent="."]
+layout_mode = 2
+
+[node name="OptionsHeader" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="ToggleOptionsBtn" type="Button" parent="OptionsHeader"]
+layout_mode = 2
+text = "▼"
+
+[node name="OptionsTitle" type="Label" parent="OptionsHeader"]
+layout_mode = 2
+text = "Import Options"
+
+[node name="OptionsPanel" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="HSeparator3" type="HSeparator" parent="."]
+layout_mode = 2
+
+[node name="StatusBar" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="StatusLabel" type="Label" parent="StatusBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Ready"
+
+[node name="ProgressBar" type="ProgressBar" parent="StatusBar"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
