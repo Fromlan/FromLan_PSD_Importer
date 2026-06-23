@@ -1,8 +1,8 @@
-[中文文档](README_zh.md)
+[English](README_en.md)
 
 # FromLan PSD Importer
 
-A **Godot 4 plugin** that exports Photoshop PSD layers to PNG textures and auto-generates Godot Control UI scenes (`.tscn`).
+**Godot 4 插件** — 将 Photoshop PSD 文件的图层导出为 PNG 纹理，并自动生成 Godot Control UI 场景（`.tscn`）。
 
 ![Godot 4.2+](https://img.shields.io/badge/Godot-4.2%2B-%23478cbf)
 ![GDScript](https://img.shields.io/badge/language-GDScript-blue)
@@ -10,68 +10,68 @@ A **Godot 4 plugin** that exports Photoshop PSD layers to PNG textures and auto-
 
 ---
 
-## Features
+## 功能
 
-- **Three Import Modes**
-  - `ByLayerAndScene` — Export per-layer PNGs + generate a Control scene (`.tscn`)
-  - `ByLayer` — Export per-layer PNGs only
-  - `Merged` — Export a single merged PNG
+- **三种导入模式**
+  - `ByLayerAndScene` — 按图层导出 PNG + 生成 Control 场景（`.tscn`）
+  - `ByLayer` — 仅按图层导出 PNG
+  - `Merged` — 导出单张合并 PNG
 
-- **Hierarchical Scene Generation** — Auto-generate nested Control / Container node trees from PSD layer groups (SectionDivider)
+- **层级场景生成** — 根据 PSD 图层组（SectionDivider）自动生成嵌套的 Control / Container 节点树
 
-- **UI Node Type Mapping** — Map layers to Godot UI nodes via `[TypeTag]` naming conventions (20+ node types: Button, Label, NinePatchRect, VBoxContainer, Panel, etc.)
+- **UI 节点类型映射** — 通过图层命名约定 `[TypeTag]` 自动将图层映射为对应的 Godot UI 节点（Button、Label、NinePatchRect、VBoxContainer、Panel 等 20+ 种类型）
 
-- **9-Slice Support** — `[9Patch]` tags with margin parameters or `__9L / __9R / __9T / __9B` companion layers for automatic NinePatchRect margin calculation
+- **九宫格 (9-Slice) 支持** — `[9Patch]` 标签配合边距参数或 `__9L / __9R / __9T / __9B` 标注图层自动计算 NinePatchRect 边距
 
-- **Text Layer Parsing** — Parse PSD TySh (Type Tool Engine) data blocks, extracting text content, font family, font size, color, alignment, and more, generating Label or RichTextLabel nodes
+- **文字图层解析** — 解析 PSD TySh（Type Tool Engine）数据块，提取文本内容、字体、字号、颜色、对齐等属性，生成 Label 或 RichTextLabel 节点
 
-- **Layer Mask Handling** — Three strategies: Skip, Apply, or Error
+- **图层蒙版处理** — 支持跳过（Skip）、应用（Apply）或报错（Error）三种策略
 
-- **Duplicate Layer Handling** — Rename, KeepFirst, or KeepLast
+- **重复图层处理** — 支持重命名（Rename）、保留首个（KeepFirst）、保留末个（KeepLast）
 
-- **Group Export Strategies** — Ignore groups, SubDirectories (nest in subdirectories), or Flattened (prefix filenames)
+- **组导出策略** — 支持忽略组（Ignore）、子目录（SubDirectories）、扁平化前缀（Flattened）
 
-- **GBK Encoding Compatibility** — Built-in GBK → UTF-16 lookup table for full Chinese Photoshop layer name support
+- **GBK 编码兼容** — 内置 GBK → UTF-16 转换表，完美支持中文 Photoshop 图层名
 
-- **Editor Dock Panel** — Built-in dock UI for manual import, batch import, and file list refresh
+- **编辑器停靠面板** — 内置独立 Dock UI，支持手动导入、批量导入和刷新文件列表
 
-- **i18n Support** — Built-in English and Chinese translations that follow the editor language setting
-
----
-
-## Installation
-
-1. Copy the `addons/FromLan_PSD_Importer/` folder into your Godot project's `addons/` directory
-2. In the Godot editor, go to **Project → Project Settings → Plugins**
-3. Find **PSD Scene Importer** and set the status to **Enabled**
-4. Place `.psd` files in your project directory — Godot will auto-detect them
+- **多语言界面** — 内置英文和中文界面翻译，自动跟随编辑器语言设置
 
 ---
 
-## Usage
+## 安装
 
-### Auto Import
+1. 将 `addons/FromLan_PSD_Importer/` 文件夹复制到你的 Godot 项目的 `addons/` 目录下
+2. 在 Godot 编辑器中打开 **项目 → 项目设置 → 插件**
+3. 找到 **PSD Scene Importer**，状态设为 **启用**
+4. 将 `.psd` 文件放入项目目录，Godot 会自动识别
 
-Place `.psd` files in your project folder, select the file in the FileSystem dock, and in the **Import** dock at the bottom:
+---
 
-1. Choose the **Import Mode** (ByLayerAndScene / ByLayer / Merged)
-2. Adjust parameters (scene generation, 9-slice, text layer behavior, etc.)
-3. Click **Reimport**
+## 使用方法
 
-### Manual Import
+### 自动导入
 
-Use the **PSD Importer** dock panel on the left side of the editor:
+将 `.psd` 文件放入项目文件夹，在文件系统面板中选中该文件，在底部的 **导入** 面板中：
 
-1. The panel automatically lists all `.psd` files in the project
-2. Select a file and configure import parameters
-3. Click **Import** to execute
+1. 选择 **导入模式**（ByLayerAndScene / ByLayer / Merged）
+2. 调整各参数（场景生成、九宫格、文字图层处理等）
+3. 点击 **重新导入**
 
-### Layer Naming Convention
+### 手动导入
 
-Use `[TypeTag]` syntax in layer names to specify the generated node type:
+通过编辑器左侧下方的 **PSD Importer** 停靠面板：
 
-| Tag | Mapped Node |
-|------|-------------|
+1. 面板会自动列出项目中所有 `.psd` 文件
+2. 选中一个文件，配置导入参数
+3. 点击 **导入** 按钮执行导入
+
+### 图层命名约定
+
+图层名称中使用 `[TypeTag]` 语法来指定生成的节点类型：
+
+| 标签 | 映射节点 |
+|------|---------|
 | `[Button]` | `Button` |
 | `[Label]` | `Label` |
 | `[Panel]` | `Panel` |
@@ -94,66 +94,66 @@ Use `[TypeTag]` syntax in layer names to specify the generated node type:
 | `[HSeparator]` | `HSeparator` |
 | `[VSeparator]` | `VSeparator` |
 
-Additional `key:value` parameters can follow the tag, e.g. `[Button,text:Click]`, `[Label,text:Hello]`.
+可以在标签后附加 `key:value` 参数，如 `[Button,text:Click]`、`[Label,text:Hello]`。
 
 ---
 
-## Import Parameters
+## 导入参数说明
 
-| Parameter | Description |
-|-----------|-------------|
-| **import_mode** | Import mode: ByLayerAndScene / ByLayer / Merged |
-| **layer_name_encoding** | Layer name encoding: UTF-8 / GBK (choose GBK for Chinese Photoshop) |
-| **layer_trim_enabled** | Whether to trim transparent edges from layers |
-| **layer_mask_handling** | Mask handling: Error / Skip / Apply |
-| **generate_hierarchy** | Whether to generate hierarchical Control scenes from layer groups |
-| **hierarchy_group_node** | Group mapping node: Control / Panel / PanelContainer |
-| **root_anchor_mode** | Root node anchor mode: Fixed (pixel size) / FullRect |
-| **text_layer_behavior** | Text layer handling: Rasterize / Label / RichTextLabel |
-| **nine_slice_enabled** | Enable 9-slice detection |
-| **group_export_behavior** | Group export strategy: Ignore / SubDirectories / Flattened |
-| **duplicate_handling** | Duplicate layer handling: Rename / KeepFirst / KeepLast |
-| **max_png_dimension** | Maximum PNG side length limit (0 = no limit) |
+| 参数 | 说明 |
+|------|------|
+| **import_mode** | 导入模式：ByLayerAndScene / ByLayer / Merged |
+| **layer_name_encoding** | 图层名编码：UTF-8 / GBK（中文 Photoshop 选 GBK） |
+| **layer_trim_enabled** | 是否裁剪图层的透明边缘 |
+| **layer_mask_handling** | 蒙版处理：Error / Skip / Apply |
+| **generate_hierarchy** | 是否根据图层组生成层级 Control 场景 |
+| **hierarchy_group_node** | 组映射节点：Control / Panel / PanelContainer |
+| **root_anchor_mode** | 根节点锚点：Fixed（像素尺寸）/ FullRect |
+| **text_layer_behavior** | 文字层处理：Rasterize（光栅化）/ Label / RichTextLabel |
+| **nine_slice_enabled** | 是否启用九宫格检测 |
+| **group_export_behavior** | 组导出策略：Ignore / SubDirectories / Flattened |
+| **duplicate_handling** | 重复图层处理：Rename / KeepFirst / KeepLast |
+| **max_png_dimension** | PNG 最大边长限制（0 = 不限制） |
 
 ---
 
-## Architecture
+## 架构
 
 ```
 addons/FromLan_PSD_Importer/
-├── plugin.gd                 # EditorPlugin entry point
-├── psd_scene_importer.gd     # EditorImportPlugin subclass (Import dock)
-├── psd_import_core.gd        # Core import pipeline
-├── psd_parser.gd             # PSD binary format parser (~3600 lines)
-├── big_endiean_reader.gd     # Big-endian binary reader utility
-├── image_data.gd             # Layer image data class
-├── layer_tree.gd             # Layer group hierarchy builder
-├── scene_builder.gd          # .tscn scene file generator
-├── ui_node_mapper.gd         # Node type mapping
-├── nine_slice_processor.gd   # 9-slice margin resolver
-├── ty_sh_parser.gd           # Text layer data parser
-├── gbk_encoding.gd           # GBK → UTF-16 converter
-├── psd_importer_dock.gd      # Editor dock panel logic
-├── plugin_translation.gd     # i18n support
-├── photoshop_document.gd     # Import record Resource
-├── psd_importer_dock.tscn    # Dock panel scene
+├── plugin.gd                 # EditorPlugin 入口
+├── psd_scene_importer.gd     # EditorImportPlugin 子类（导入面板）
+├── psd_import_core.gd        # 核心导入管线
+├── psd_parser.gd             # PSD 二进制格式解析器（~3600 行）
+├── big_endiean_reader.gd     # 大端字节读取工具
+├── image_data.gd             # 图层图像数据类
+├── layer_tree.gd             # 图层组层级树构建
+├── scene_builder.gd          # .tscn 场景文件生成
+├── ui_node_mapper.gd         # 节点类型映射
+├── nine_slice_processor.gd   # 九宫格边距解析
+├── ty_sh_parser.gd           # 文字图层数据解析
+├── gbk_encoding.gd           # GBK → UTF-16 转换
+├── psd_importer_dock.gd      # 编辑器 Dock 面板
+├── plugin_translation.gd     # 多语言支持
+├── photoshop_document.gd     # 导入记录 Resource
+├── psd_importer_dock.tscn    # Dock 面板场景
 └── locales/
-    ├── en.tres               # English translations
-    └── zh.tres               # Chinese translations
+    ├── en.tres               # 英文翻译
+    └── zh.tres               # 中文翻译
 ```
 
 ---
 
-## Compatibility
+## 兼容性
 
 - **Godot**: 4.2+
-- **Renderers**: GL Compatibility / Forward+ / Mobile
-- **Language**: Pure GDScript — no C++ extensions or external dependencies
-- **PSD version**: Compatible with Photoshop CS6 and later (PSB large document format has limited support)
+- **渲染器**: GL Compatibility / Forward+ / Mobile
+- **语言**: GDScript（纯原生，无 C++ 扩展或外部依赖）
+- **PSD 版本**: 兼容 Photoshop CS6 及以上版本（PSB 大文档格式有限支持）
 
 ---
 
-## License
+## 许可
 
 MIT License
 
