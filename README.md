@@ -1,3 +1,5 @@
+[中文文档](README_zh.md)
+
 # FromLan PSD Importer
 
 A **Godot 4 plugin** that exports Photoshop PSD layers to PNG textures and auto-generates Godot Control UI scenes (`.tscn`).

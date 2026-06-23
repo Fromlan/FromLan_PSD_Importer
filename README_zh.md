@@ -1,3 +1,5 @@
+[English](README.md)
+
 # FromLan PSD Importer
 
 **Godot 4 插件** — 将 Photoshop PSD 文件的图层导出为 PNG 纹理，并自动生成 Godot Control UI 场景（`.tscn`）。
