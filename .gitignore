@@ -7,7 +7,8 @@
 .codegraph/
 psd-tools/
 
-# PSD source files
+# Claude Code project instructions
+CLAUDE.md
 游戏界面.psd
 游戏界面.psd.import
 黑色2.psd
