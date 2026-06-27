@@ -142,6 +142,7 @@ static func import_full(source_file: String, save_path: String, options: Diction
 	var source_file_name := source_file.get_basename().get_file()
 	var source_file_dir := source_file.get_base_dir()
 	var base_file_path := source_file.get_base_dir().path_join(source_file_name)
+	var layer_dir := source_file_dir.path_join(source_file_name)
 	var resource_save_path := save_path + ".tres"
 
 	# Load or create import record resource
@@ -161,7 +162,7 @@ static func import_full(source_file: String, save_path: String, options: Diction
 	var gen_files: Array[String] = []
 	if merge_layers:
 		planned_entries.append({
-			"save_path": base_file_path + ".png",
+			"save_path": layer_dir + ".png",
 			"image": img_data_array[0].image,
 			"image_data": img_data_array[0],
 		})
@@ -171,7 +172,7 @@ static func import_full(source_file: String, save_path: String, options: Diction
 				continue
 			planned_entries.append({
 				"save_path": _build_layer_save_path(image_data,
-					source_file_dir, source_file_name, template,
+					layer_dir, source_file_name, template,
 					group_behavior, subdir_naming, flat_naming,
 				),
 				"image": image_data.image,
@@ -319,6 +320,7 @@ static func import_full_async(source_file: String, save_path: String, options: D
 	var source_file_dir := source_file.get_base_dir()
 	var base_file_path := source_file.get_base_dir().path_join(source_file_name)
 	var resource_save_path := save_path + ".tres"
+	var layer_dir := source_file_dir.path_join(source_file_name)
 
 	var resource := PhotoshopDocumentResource.new()
 	if FileAccess.file_exists(resource_save_path):
@@ -335,7 +337,7 @@ static func import_full_async(source_file: String, save_path: String, options: D
 	var gen_files: Array[String] = []
 	if merge_layers:
 		planned_entries.append({
-			"save_path": base_file_path + ".png",
+			"save_path": layer_dir + ".png",
 			"image": img_data_array[0].image,
 			"image_data": img_data_array[0],
 		})
@@ -345,7 +347,7 @@ static func import_full_async(source_file: String, save_path: String, options: D
 				continue
 			planned_entries.append({
 				"save_path": _build_layer_save_path(image_data,
-					source_file_dir, source_file_name, template,
+					layer_dir, source_file_name, template,
 					group_behavior, subdir_naming, flat_naming,
 				),
 				"image": image_data.image,
